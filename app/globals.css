@@ -1629,8 +1629,23 @@ img {
   .contact__row {
     grid-template-columns: 1fr;
   }
-  .stats__grid {
+  .stats__grid,
+  .contact-band__grid {
     grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  /* Stack the contact photo below the form at a sensible height */
+  .contact__photo {
+    min-height: 340px;
+  }
+  /* Long email/phone shouldn't clip on narrow screens */
+  .contact-band__value {
+    font-size: 20px;
+    overflow-wrap: anywhere;
+  }
+  /* Roomier tap targets + a touch more breathing room in the drawer */
+  .nav__drawer a {
+    padding: 18px 0;
   }
 }
 
