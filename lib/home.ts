@@ -38,7 +38,7 @@ export const facts = [
     n: "01",
     title: "Film & Digital",
     text: "I shoot both — film for its soul, digital for its certainty. The two together feel just right.",
-    img: "/images/fact-film-digital.png",
+    img: "/images/fact-film-digital.webp",
   },
   {
     n: "02",
@@ -50,6 +50,6 @@ export const facts = [
     n: "03",
     title: "Forever Curious",
     text: "Between weddings you will find me wandering markets, chasing light and collecting old cameras.",
-    img: "/images/vintage-cameras.png",
+    img: "/images/vintage-cameras.webp",
   },
 ];

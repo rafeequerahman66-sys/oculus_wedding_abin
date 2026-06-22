@@ -72,7 +72,7 @@ export default function AboutPage() {
           </Link>
         </div>
         <div className="lens__photo">
-          <Photo src="/images/photographer-at-work.png" alt="The photographer at work" />
+          <Photo src="/images/photographer-at-work.webp" alt="The photographer at work" />
         </div>
       </section>
     </div>
