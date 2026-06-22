@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:#F6F1EA;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  image-slot{display:block;}
+  ::selection{background:#B58A72;color:#F6F1EA;}
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div style="font-family:Jost,sans-serif;color:#3B342C;background:#F6F1EA;min-height:100vh;overflow-x:hidden;">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 5vw;height:78px;background:rgba(246,241,234,0.92);backdrop-filter:blur(10px);border-bottom:1px solid #E2D7C6;">
+    <div style="display:flex;align-items:center;gap:30px;">
+      <button onClick="{{ goHome }}" style="position:relative;font-family:Jost;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#3B342C;background:none;border:none;cursor:pointer;padding:28px 0;">Home<sc-if value="{{ isHome }}"><span style="position:absolute;left:0;right:0;bottom:22px;height:1px;background:#B58A72;"></span></sc-if></button>
+      <button onClick="{{ goAbout }}" style="position:relative;font-family:Jost;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#3B342C;background:none;border:none;cursor:pointer;padding:28px 0;">About<sc-if value="{{ isAbout }}"><span style="position:absolute;left:0;right:0;bottom:22px;height:1px;background:#B58A72;"></span></sc-if></button>
+      <button onClick="{{ goServices }}" style="position:relative;font-family:Jost;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#3B342C;background:none;border:none;cursor:pointer;padding:28px 0;">Services<sc-if value="{{ isServices }}"><span style="position:absolute;left:0;right:0;bottom:22px;height:1px;background:#B58A72;"></span></sc-if></button>
+    </div>
+    <button onClick="{{ goHome }}" style="text-align:center;background:none;border:none;cursor:pointer;padding:0;line-height:1;">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:23px;letter-spacing:.32em;text-transform:uppercase;color:#3B342C;padding-left:.32em;">Oculus</div>
+      <div style="font-family:'Pinyon Script',cursive;font-size:22px;color:#B58A72;margin-top:-2px;">weddings</div>
+    </button>
+    <div style="display:flex;align-items:center;gap:30px;justify-content:flex-end;">
+      <button onClick="{{ goPortfolio }}" style="position:relative;font-family:Jost;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#3B342C;background:none;border:none;cursor:pointer;padding:28px 0;">Portfolio<sc-if value="{{ isPortfolio }}"><span style="position:absolute;left:0;right:0;bottom:22px;height:1px;background:#B58A72;"></span></sc-if></button>
+      <button onClick="{{ goBlog }}" style="position:relative;font-family:Jost;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#3B342C;background:none;border:none;cursor:pointer;padding:28px 0;">Blog<sc-if value="{{ isBlog }}"><span style="position:absolute;left:0;right:0;bottom:22px;height:1px;background:#B58A72;"></span></sc-if></button>
+      <button onClick="{{ goContact }}" style="font-family:Jost;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#F6F1EA;background:#3B342C;border:none;cursor:pointer;padding:11px 24px;" style-hover="background:#B58A72;">Inquire</button>
+    </div>
+  </nav>
+
+  <!-- ===== HOME ===== -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <!-- HERO -->
+    <section style="position:relative;height:90vh;min-height:620px;overflow:hidden;background:#E4D8C4;">
+      <image-slot id="homeHero" style="position:absolute;inset:0;width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop your hero photo"></image-slot>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,33,27,0.32) 0%,rgba(40,33,27,0.12) 40%,rgba(40,33,27,0.42) 100%);"></div>
+      <div style="position:absolute;top:34px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:20px;width:min(360px,70%);">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(246,241,234,0.6));"></span>
+        <span style="width:7px;height:7px;border:1px solid rgba(246,241,234,0.85);transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:rgba(246,241,234,0.85);flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid rgba(246,241,234,0.85);transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,rgba(246,241,234,0.6),transparent);"></span>
+      </div>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#F6F1EA;padding:24px;animation:fadeUp 1.1s ease both;">
+        <div style="font-size:12px;letter-spacing:.42em;text-transform:uppercase;margin-bottom:18px;">Fine-art wedding photography</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(44px,7vw,86px);line-height:1.02;margin:0;letter-spacing:.02em;">Every love story<br>is worth keeping</h1>
+        <div style="font-family:'Pinyon Script',cursive;font-size:clamp(36px,5vw,58px);color:#EAD9C4;margin-top:8px;">softly, forever</div>
+        <button onClick="{{ goPortfolio }}" style="margin-top:34px;font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F6F1EA;border:1px solid rgba(246,241,234,0.6);background:transparent;padding:15px 40px;cursor:pointer;" style-hover="background:#F6F1EA;color:#3B342C;">View the portfolio</button>
+      </div>
+    </section>
+
+    <!-- INTRO QUOTE -->
+    <section style="padding:clamp(80px,10vw,130px) 6vw;text-align:center;">
+      <div style="font-family:'Pinyon Script',cursive;font-size:40px;color:#B58A72;margin-bottom:10px;">Welcome, lovely</div>
+      <p style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,3.4vw,40px);line-height:1.5;color:#4A4238;max-width:880px;margin:0 auto;">I'm a photographer for couples who feel more than they say — here to hold onto the glances, the laughter and the quiet in-betweens, long after the day has passed.</p>
+    </section>
+
+    <!-- OFFERINGS -->
+    <section style="background:#ECE4D8;padding:clamp(70px,9vw,120px) 6vw;">
+      <div style="text-align:center;margin-bottom:64px;">
+        <div style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A89A85;margin-bottom:14px;">What I Offer</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,4vw,46px);letter-spacing:.05em;text-transform:uppercase;margin:0;">Ways to work together</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);max-width:1180px;margin:0 auto;">
+        <sc-for list="{{ offerings }}" as="o" hint-placeholder-count="3">
+          <div style="text-align:center;">
+            <image-slot id="{{ o.id }}" style="width:100%;height:380px;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:27px;letter-spacing:.04em;margin:26px 0 10px;">{{ o.title }}</h3>
+            <p style="font-family:Jost;font-weight:300;font-size:14px;line-height:1.85;color:#6F6557;max-width:300px;margin:0 auto 18px;">{{ o.text }}</p>
+            <button onClick="{{ goServices }}" style="font-family:Jost;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#B58A72;background:none;border:none;cursor:pointer;padding:0;border-bottom:1px solid #D8C6B4;padding-bottom:4px;">Learn more</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- FEATURE -->
+    <section style="display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:clamp(30px,5vw,80px);padding:clamp(70px,9vw,120px) 6vw;max-width:1280px;margin:0 auto;">
+      <image-slot id="homeFeature" style="width:100%;height:560px;" shape="rect" fit="cover" placeholder="Drop a feature photo"></image-slot>
+      <div>
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;margin-bottom:8px;">behind the lens</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.6vw,44px);letter-spacing:.04em;text-transform:uppercase;line-height:1.15;margin:0 0 24px;">An unhurried,<br>honest approach</h2>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 18px;">No stiff posing, no rushing from one shot to the next. I give you room to simply be together, and quietly photograph the moments that unfold — the ones you'll actually want to remember.</p>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 32px;">Based in Bengaluru, available worldwide for couples chasing light and meaning.</p>
+        <button onClick="{{ goAbout }}" style="font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#3B342C;border:1px solid #C9B79C;background:transparent;padding:14px 36px;cursor:pointer;" style-hover="background:#3B342C;color:#F6F1EA;border-color:#3B342C;">My story</button>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <sc-if value="{{ showTestimonial }}" hint-placeholder-val="{{ true }}">
+    <section style="background:#3B342C;color:#F0E8DC;padding:clamp(80px,10vw,130px) 6vw;text-align:center;">
+      <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#D9B89E;margin-bottom:22px;">kind words</div>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(24px,3.2vw,38px);line-height:1.55;max-width:900px;margin:0 auto 30px;">Oculus didn't just take photographs — he gave us back the feeling of the entire day. Every time we open the album, we're right there again.</p>
+      <div style="font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#B6A892;">Vishnu &amp; Shilpa · Palakkad</div>
+    </section>
+    </sc-if>
+
+    <!-- STATS -->
+    <sc-if value="{{ showStats }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:clamp(64px,8vw,100px) 6vw;">
+      <div ref="{{ statsRef }}" style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1080px;margin:0 auto;text-align:center;">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div>
+            <div data-target="{{ s.target }}" data-suffix="{{ s.suffix }}" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(46px,6vw,76px);line-height:1;color:#3B342C;">{{ s.num }}</div>
+            <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#A89A85;margin-top:12px;">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- CTA -->
+    <section style="position:relative;overflow:hidden;background:#F2E7D6;">
+      <div style="position:relative;text-align:center;color:#3B342C;padding:clamp(72px,9vw,118px) 24px;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:40px;color:#B58A72;margin-bottom:4px;">let's begin</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4.4vw,54px);letter-spacing:.03em;margin:0 0 14px;">Tell me about your day</h2>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.8;color:#6F6557;max-width:440px;margin:0 auto 30px;">I take a limited number of weddings each year — let's see if your date is free.</p>
+        <button onClick="{{ goContact }}" style="font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F6F1EA;background:#3B342C;border:none;padding:16px 44px;cursor:pointer;" style-hover="background:#B58A72;">Get in touch</button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== SERVICES ===== -->
+  <sc-if value="{{ isServices }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">the experience</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,54px);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0;">Wedding Packages</h1>
+      </div>
+    </section>
+
+    <section style="padding:clamp(56px,7vw,90px) 6vw;">
+      <div style="text-align:center;max-width:560px;margin:0 auto 18px;">
+        <p style="font-family:Jost;font-weight:300;font-size:14px;letter-spacing:.04em;line-height:1.8;color:#6F6557;margin:0;">Bride &amp; Groom — both-side coverage. Booking now open for April–October.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1240px;margin:0 auto;align-items:stretch;">
+        <sc-for list="{{ packages }}" as="p" hint-placeholder-count="3">
+          <div style="background:{{ p.bg }};border:1px solid {{ p.border }};padding:clamp(32px,2.6vw,44px) clamp(26px,2.2vw,36px);display:flex;flex-direction:column;position:relative;">
+            <sc-if value="{{ p.featured }}"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#A8C23F;"></div></sc-if>
+            <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:{{ p.kickerColor }};">{{ p.kicker }}</div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:27px;letter-spacing:.02em;margin:12px 0 4px;color:{{ p.titleColor }};">{{ p.name }}</h3>
+            <p style="font-family:Jost;font-weight:300;font-size:12.5px;line-height:1.6;color:{{ p.featColor }};margin:0 0 22px;min-height:36px;">{{ p.events }}</p>
+            <div style="height:1px;background:{{ p.rule }};margin-bottom:22px;"></div>
+            <div style="display:flex;flex-direction:column;gap:22px;flex:1;">
+              <sc-for list="{{ p.sections }}" as="sec" hint-placeholder-count="3">
+                <div>
+                  <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:{{ p.labelColor }};margin-bottom:11px;">{{ sec.label }}</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <sc-for list="{{ sec.items }}" as="f" hint-placeholder-count="4">
+                      <div style="display:flex;align-items:flex-start;gap:10px;font-family:Jost;font-weight:300;font-size:13px;line-height:1.5;color:{{ p.featColor }};">
+                        <span style="width:4px;height:4px;border-radius:50%;background:#A8C23F;margin-top:7px;flex:none;"></span>{{ f }}
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="height:1px;background:{{ p.rule }};margin:24px 0 18px;"></div>
+            <button onClick="{{ goContact }}" style="font-family:Jost;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:{{ p.btnColor }};border:1px solid {{ p.btnBorder }};background:{{ p.btnBg }};padding:14px 28px;cursor:pointer;">Enquire</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#ECE4D8;padding:clamp(70px,9vw,120px) 6vw;">
+      <div style="text-align:center;margin-bottom:60px;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">how it works</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,4vw,46px);letter-spacing:.05em;text-transform:uppercase;margin:4px 0 0;">What to Expect</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1180px;margin:0 auto;">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:46px;color:#C7B49E;line-height:1;">{{ st.n }}</div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;letter-spacing:.03em;margin:14px 0 10px;">{{ st.title }}</h3>
+            <p style="font-family:Jost;font-weight:300;font-size:14px;line-height:1.8;color:#6F6557;margin:0;">{{ st.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:clamp(70px,9vw,120px) 6vw;max-width:920px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A89A85;margin-bottom:12px;">Good to know</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,4vw,44px);letter-spacing:.05em;text-transform:uppercase;margin:0;">Any Queries?</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="4">
+          <div style="border-top:1px solid #DED4C5;padding:26px 0;">
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;letter-spacing:.02em;margin:0 0 10px;">{{ q.q }}</h3>
+            <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.85;color:#6F6557;margin:0;">{{ q.a }}</p>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid #DED4C5;"></div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== ABOUT ===== -->
+  <sc-if value="{{ isAbout }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">hello there</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,54px);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0;">My Story</h1>
+      </div>
+    </section>
+
+    <section style="display:grid;grid-template-columns:0.85fr 1.15fr;align-items:start;gap:clamp(30px,5vw,80px);padding:clamp(60px,8vw,110px) 6vw;max-width:1240px;margin:0 auto;">
+      <div style="position:sticky;top:100px;"><image-slot id="aboutPortrait" style="width:100%;height:min(70vh,680px);" shape="rect" fit="cover" placeholder="Drop your portrait"></image-slot></div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A89A85;margin-bottom:16px;">The photographer</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.6vw,46px);letter-spacing:.03em;line-height:1.15;margin:0 0 28px;">I never planned to become a wedding photographer.</h2>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 18px;">Like many creative journeys, mine began with a simple curiosity. What started as an interest in cameras and visual storytelling gradually became a passion for capturing real moments and genuine emotions. I found myself drawn to the power of photographs and films — the ability to freeze a moment in time and preserve memories that would otherwise fade.</p>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 18px;">In the early days, I spent countless hours learning, experimenting, and documenting everyday life. With every project, I became more fascinated by the emotions behind the lens rather than the technical side of the camera itself.</p>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 18px;">My path into wedding photography and videography happened almost unexpectedly. An opportunity to capture a wedding introduced me to a world filled with love, family, emotions, and once-in-a-lifetime moments. Watching a couple relive their wedding day through my work made me realize that this was more than a profession — it was a responsibility and a privilege.</p>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 18px;">Since then, weddings have become my canvas for storytelling. Every celebration is unique, every couple has a different journey, and every wedding offers moments that can never be repeated. My goal is not just to create beautiful images and films, but to preserve the feelings, connections, and memories that make each story special.</p>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 30px;">Today, I am grateful to do what I love — capturing genuine moments and turning them into timeless memories that couples and families can cherish for generations.</p>
+        <div style="font-family:'Pinyon Script',cursive;font-size:42px;color:#B58A72;">Oculus</div>
+      </div>
+    </section>
+
+    <section style="background:#ECE4D8;padding:clamp(70px,9vw,120px) 6vw;">
+      <div style="text-align:center;margin-bottom:60px;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">a little more</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,4vw,46px);letter-spacing:.05em;text-transform:uppercase;margin:4px 0 0;">A Few Facts About Myself</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,50px);max-width:1180px;margin:0 auto;">
+        <sc-for list="{{ facts }}" as="ft" hint-placeholder-count="3">
+          <div style="text-align:center;">
+            <image-slot id="{{ ft.id }}" style="width:100%;height:320px;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot>
+            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:#C7B49E;margin-top:22px;">{{ ft.n }}</div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;letter-spacing:.02em;margin:6px 0 10px;">{{ ft.title }}</h3>
+            <p style="font-family:Jost;font-weight:300;font-size:14px;line-height:1.8;color:#6F6557;max-width:280px;margin:0 auto;">{{ ft.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:clamp(30px,5vw,80px);padding:clamp(70px,9vw,120px) 6vw;max-width:1240px;margin:0 auto;">
+      <div>
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;margin-bottom:8px;">together</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.6vw,46px);letter-spacing:.03em;line-height:1.15;margin:0 0 22px;">Your Story, My Lens</h2>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.95;color:#6F6557;margin:0 0 30px;">From the first nervous hello to the last dance, I'm there as a quiet witness — never directing the day, only catching it as it truly happens. Let's make something you'll hand down for generations.</p>
+        <button onClick="{{ goContact }}" style="font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#3B342C;border:1px solid #C9B79C;background:transparent;padding:14px 36px;cursor:pointer;" style-hover="background:#3B342C;color:#F6F1EA;border-color:#3B342C;">Work with me</button>
+      </div>
+      <image-slot id="aboutLens" style="width:100%;height:520px;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== PORTFOLIO ===== -->
+  <sc-if value="{{ isPortfolio }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">selected works</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,54px);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0;">Highlights &amp; Works</h1>
+      </div>
+    </section>
+
+    <section style="padding:clamp(56px,7vw,90px) 6vw clamp(72px,9vw,110px);">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px);max-width:1180px;margin:0 auto;">
+        <button onClick="{{ openVishnu }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1437;overflow:hidden;"><image-slot id="pf1" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Vishnu &amp; Shilpa</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Palakkad, Kerala</div>
+        </button>
+        <button onClick="{{ openMahesh }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1440;overflow:hidden;"><image-slot id="pf2" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Mahesh &amp; Athira</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Trivandrum, Kerala</div>
+        </button>
+        <button onClick="{{ openRohin }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1440;overflow:hidden;"><image-slot id="pf3" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Rohin &amp; Jana</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Bangalore</div>
+        </button>
+        <button onClick="{{ openYadu }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1350;overflow:hidden;"><image-slot id="pf4" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Yadu &amp; Aswathy</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Trivandrum, Kerala</div>
+        </button>
+        <button onClick="{{ openArjun }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1350;overflow:hidden;"><image-slot id="pf5" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Arjun &amp; Aparnna</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Trivandrum, Kerala</div>
+        </button>
+        <button onClick="{{ openAnakha }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1440;overflow:hidden;"><image-slot id="pf6" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Anakha &amp; Siddharth</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Ernakulam, Kerala</div>
+        </button>
+        <button onClick="{{ openSoorya }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1344;overflow:hidden;"><image-slot id="pf7" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Soorya &amp; Nithun</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Trivandrum, Kerala</div>
+        </button>
+        <button onClick="{{ openDhanesh }}" style="display:block;width:100%;padding:0;border:none;background:none;cursor:pointer;text-align:center;">
+          <div style="width:100%;aspect-ratio:1080/1344;overflow:hidden;"><image-slot id="pf8" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.02em;color:#3B342C;margin-top:18px;">Dhanesh &amp; Steffy</div>
+          <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A89A85;margin-top:5px;">Kottayam, Kerala</div>
+        </button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== PORTFOLIO DETAIL ===== -->
+  <sc-if value="{{ isPortfolioDetail }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">{{ dKicker }}</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,54px);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 4px;">{{ dCouple }}</h1>
+        <div style="font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#A89A85;">{{ dPlace }}</div>
+      </div>
+    </section>
+
+    <section style="padding:clamp(50px,6vw,80px) 6vw;max-width:1180px;margin:0 auto;">
+      <div style="display:flex;justify-content:center;margin-bottom:60px;">
+        <div style="width:100%;max-width:560px;aspect-ratio:{{ dHero }};overflow:hidden;">
+          <image-slot id="pd1" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop the hero photo"></image-slot>
+        </div>
+      </div>
+
+      <div style="max-width:720px;margin:0 auto 60px;text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.8vw,32px);line-height:1.55;color:#4A4238;margin:0;">{{ dIntro }}</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:920px;margin:0 auto 60px;">
+        <sc-for list="{{ detailRest }}" as="p" hint-placeholder-count="3">
+          <div style="aspect-ratio:{{ p.ratio }};overflow:hidden;"><image-slot id="{{ p.id }}" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+        </sc-for>
+      </div>
+
+      <div style="background:#3B342C;color:#F0E8DC;text-align:center;padding:clamp(50px,7vw,90px) 8vw;margin-bottom:60px;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:32px;color:#D9B89E;margin-bottom:18px;">in their words</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3vw,34px);line-height:1.55;max-width:780px;margin:0 auto;">{{ dQuote }}</p>
+      </div>
+
+      <div style="text-align:center;margin-top:56px;">
+        <button onClick="{{ goPortfolio }}" style="font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#3B342C;border:1px solid #C9B79C;background:transparent;padding:14px 38px;cursor:pointer;" style-hover="background:#3B342C;color:#F6F1EA;border-color:#3B342C;">Back to portfolio</button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== BLOG ===== -->
+  <sc-if value="{{ isBlog }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">from the journal</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,54px);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0;">Latest Stories</h1>
+      </div>
+    </section>
+
+    <section style="padding:clamp(56px,7vw,90px) 6vw;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,70px);">
+      <sc-for list="{{ blogPosts }}" as="b" hint-placeholder-count="4">
+        <button onClick="{{ b.open }}" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;background:none;border:none;cursor:pointer;padding:0;text-align:left;">
+          <div style="width:100%;aspect-ratio:{{ b.ratio }};overflow:hidden;"><image-slot id="{{ b.id }}" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+          <div>
+            <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#B58A72;margin-bottom:14px;">{{ b.cat }} · {{ b.date }}</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.2vw,38px);letter-spacing:.02em;line-height:1.2;margin:0 0 16px;">{{ b.title }}</h2>
+            <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.9;color:#6F6557;margin:0 0 22px;">{{ b.excerpt }}</p>
+            <span style="font-family:Jost;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#3B342C;border-bottom:1px solid #C9B79C;padding-bottom:4px;">Read the story</span>
+          </div>
+        </button>
+      </sc-for>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== BLOG DETAIL ===== -->
+  <sc-if value="{{ isBlogDetail }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;max-width:820px;margin:0 auto;">
+        <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#B58A72;margin-bottom:14px;">{{ bData.cat }} · {{ bData.date }}</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);letter-spacing:.02em;line-height:1.18;margin:0;">{{ bData.title }}</h1>
+        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#A89A85;margin-top:18px;">Words &amp; photos by Oculus Weddings</div>
+      </div>
+    </section>
+
+    <section style="padding:clamp(40px,5vw,70px) 6vw;max-width:760px;margin:0 auto;">
+      <div style="width:100%;aspect-ratio:{{ bData.coverRatio }};overflow:hidden;margin-bottom:48px;"><image-slot id="bd1" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop the cover photo"></image-slot></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,23px);line-height:1.75;color:#4A4238;margin:0 0 26px;">{{ bData.lead }}</p>
+      <p style="font-family:Jost;font-weight:300;font-size:16px;line-height:1.95;color:#6F6557;margin:0 0 26px;">{{ bData.body1 }}</p>
+      <div style="width:100%;aspect-ratio:{{ bData.midRatio }};overflow:hidden;margin:14px 0 30px;"><image-slot id="bd2" style="width:100%;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.6vw,28px);line-height:1.6;color:#4A4238;text-align:center;border-top:1px solid #DED4C5;border-bottom:1px solid #DED4C5;padding:34px 10px;margin:0 0 30px;">{{ bData.quote }}</p>
+      <p style="font-family:Jost;font-weight:300;font-size:16px;line-height:1.95;color:#6F6557;margin:0 0 40px;">{{ bData.body2 }}</p>
+      <div style="text-align:center;">
+        <button onClick="{{ goBlog }}" style="font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#3B342C;border:1px solid #C9B79C;background:transparent;padding:14px 38px;cursor:pointer;" style-hover="background:#3B342C;color:#F6F1EA;border-color:#3B342C;">More stories</button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== CONTACT ===== -->
+  <sc-if value="{{ isContact }}">
+  <div style="animation:fadeIn .5s ease both;">
+    <section style="text-align:center;background:#F6F1EA;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(420px,80%);margin:0 auto;padding-top:8px;">
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+        <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+        <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+      </div>
+      <div style="padding:26px 6vw 0;">
+        <div style="font-family:'Pinyon Script',cursive;font-size:34px;color:#B58A72;">say hello</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,54px);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0;">Get in Touch</h1>
+      </div>
+    </section>
+
+    <section style="display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(30px,5vw,70px);padding:clamp(56px,7vw,90px) 6vw;max-width:1180px;margin:0 auto;align-items:stretch;">
+      <div>
+        <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.9;color:#6F6557;margin:0 0 34px;max-width:480px;">Tell me a little about you and your day. I take a limited number of weddings each year, so do reach out early — I'd love to be part of it.</p>
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;">
+            <div><label style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A89A85;margin-bottom:9px;">Your names</label><input type="text" style="width:100%;background:transparent;border:none;border-bottom:1px solid #C9B79C;padding:9px 0;font-family:Jost;font-size:15px;color:#3B342C;outline:none;"></div>
+            <div><label style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A89A85;margin-bottom:9px;">Email</label><input type="email" style="width:100%;background:transparent;border:none;border-bottom:1px solid #C9B79C;padding:9px 0;font-family:Jost;font-size:15px;color:#3B342C;outline:none;"></div>
+          </div>
+          <div><label style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A89A85;margin-bottom:9px;">Wedding date &amp; place</label><input type="text" style="width:100%;background:transparent;border:none;border-bottom:1px solid #C9B79C;padding:9px 0;font-family:Jost;font-size:15px;color:#3B342C;outline:none;"></div>
+          <div><label style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A89A85;margin-bottom:9px;">Tell me your story</label><textarea rows="4" style="width:100%;background:transparent;border:none;border-bottom:1px solid #C9B79C;padding:9px 0;font-family:Jost;font-size:15px;color:#3B342C;outline:none;resize:none;"></textarea></div>
+          <button style="align-self:flex-start;margin-top:8px;font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F6F1EA;background:#3B342C;border:none;padding:15px 42px;cursor:pointer;" style-hover="background:#B58A72;">Send enquiry</button>
+        </div>
+      </div>
+      <image-slot id="contactImg" style="width:100%;min-height:520px;height:100%;" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot>
+    </section>
+
+    <section style="background:#ECE4D8;padding:clamp(56px,7vw,90px) 6vw;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1080px;margin:0 auto;text-align:center;">
+        <div><div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A89A85;margin-bottom:10px;">Email</div><a href="mailto:oculusmediabisinessinfo@gmail.com" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#3B342C;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s;" style-hover="border-color:#B58A72;">oculusmediabisinessinfo@gmail.com</a></div>
+        <div><div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A89A85;margin-bottom:10px;">Call</div><a href="tel:+919656616686" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#3B342C;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s;" style-hover="border-color:#B58A72;">+91 96566 16686</a></div>
+        <div><div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A89A85;margin-bottom:10px;">Follow</div><a href="https://www.instagram.com/0culuswedding/" target="_blank" rel="noopener" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#3B342C;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s;" style-hover="border-color:#B58A72;">@0culuswedding</a></div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ===== 404 ===== -->
+  <sc-if value="{{ is404 }}">
+  <div style="animation:fadeIn .5s ease both;text-align:center;padding:clamp(40px,5vw,70px) 6vw clamp(80px,10vw,130px);">
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:min(360px,70%);margin:0 auto 18px;">
+      <span style="height:1px;flex:1;background:linear-gradient(90deg,transparent,#C9B79C);"></span>
+      <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:#B58A72;flex:none;"></span>
+      <span style="width:7px;height:7px;border:1px solid #B58A72;transform:rotate(45deg);flex:none;"></span>
+      <span style="height:1px;flex:1;background:linear-gradient(90deg,#C9B79C,transparent);"></span>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(90px,16vw,180px);line-height:1;color:#D8C6B4;">404</div>
+    <div style="font-family:'Pinyon Script',cursive;font-size:40px;color:#B58A72;margin-top:-6px;">oh dear</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.4vw,40px);letter-spacing:.05em;text-transform:uppercase;margin:18px 0 14px;">This page has wandered off</h1>
+    <p style="font-family:Jost;font-weight:300;font-size:15px;line-height:1.85;color:#6F6557;max-width:440px;margin:0 auto 32px;">The link may be broken, or the page may have moved. Let's get you back to somewhere lovely.</p>
+    <button onClick="{{ goHome }}" style="font-family:Jost;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F6F1EA;background:#3B342C;border:none;padding:15px 42px;cursor:pointer;" style-hover="background:#B58A72;">Back home</button>
+  </div>
+  </sc-if>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:#3B342C;color:#C8BBA9;padding:clamp(56px,7vw,84px) 6vw 36px;">
+    <div style="text-align:center;border-bottom:1px solid rgba(200,187,169,0.18);padding-bottom:40px;margin-bottom:30px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;letter-spacing:.34em;text-transform:uppercase;color:#F0E8DC;padding-left:.34em;">Oculus</div>
+      <div style="font-family:'Pinyon Script',cursive;font-size:24px;color:#D9B89E;margin:-2px 0 24px;">weddings</div>
+      <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:30px;font-family:Jost;font-size:11px;letter-spacing:.2em;text-transform:uppercase;">
+        <button onClick="{{ goHome }}" style="background:none;border:none;color:#C8BBA9;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;" style-hover="color:#F0E8DC;">Home</button>
+        <button onClick="{{ goAbout }}" style="background:none;border:none;color:#C8BBA9;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;" style-hover="color:#F0E8DC;">About</button>
+        <button onClick="{{ goServices }}" style="background:none;border:none;color:#C8BBA9;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;" style-hover="color:#F0E8DC;">Services</button>
+        <button onClick="{{ goPortfolio }}" style="background:none;border:none;color:#C8BBA9;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;" style-hover="color:#F0E8DC;">Portfolio</button>
+        <button onClick="{{ goBlog }}" style="background:none;border:none;color:#C8BBA9;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;" style-hover="color:#F0E8DC;">Blog</button>
+        <button onClick="{{ goContact }}" style="background:none;border:none;color:#C8BBA9;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;" style-hover="color:#F0E8DC;">Contact</button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:Jost;font-size:11px;letter-spacing:.14em;color:#9C8F7C;">
+      <span>© 2018 Oculus Weddings · Bengaluru &amp; worldwide</span>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <a href="https://www.instagram.com/0culuswedding/" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(200,187,169,0.3);border-radius:50%;color:#C8BBA9;" style-hover="background:#B58A72;color:#3B342C;border-color:#B58A72;">
+          <svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="1.5" y="1.5" width="11" height="11" rx="3.2"></rect><circle cx="7" cy="7" r="2.7"></circle><circle cx="10.3" cy="3.7" r="0.7" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <button onClick="{{ go404 }}" style="background:none;border:none;color:#6F6557;cursor:pointer;font:inherit;letter-spacing:inherit;padding:0;">404</button>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: 880 },
+  &quot;startView&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;home&quot;, &quot;services&quot;, &quot;about&quot;, &quot;portfolio&quot;, &quot;portfolioDetail&quot;, &quot;blog&quot;, &quot;blogDetail&quot;, &quot;contact&quot;, &quot;notfound&quot;], &quot;default&quot;: &quot;home&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;showStats&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showTestimonial&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { view: props.startView || 'home', session: 'vishnu', blogId: 'bl1' };
+  }
+
+  go(v) {
+    return () => {
+      this.setState({ view: v });
+      try { window.scrollTo(0, 0); } catch (e) {}
+    };
+  }
+
+  openSession(s) {
+    return () => {
+      this.setState({ session: s, view: 'portfolioDetail' });
+      try { window.scrollTo(0, 0); } catch (e) {}
+    };
+  }
+
+  openBlog(id) {
+    return () => {
+      this.setState({ blogId: id, view: 'blogDetail' });
+      try { window.scrollTo(0, 0); } catch (e) {}
+    };
+  }
+
+  blogCfg() {
+    return {
+      bl1: { cat: 'Real Weddings', date: 'December 2025', title: 'Vishnu & Shilpa: A Palakkad Celebration in Full Bloom',
+        lead: 'There is a particular stillness to a Kerala morning before a wedding begins — the scent of jasmine, the hush before the melam, the family moving softly through the courtyard. Vishnu and Shilpa\'s day began exactly there.',
+        body1: 'The ceremony unfolded without hurry. Elders blessed the couple, the nadaswaram rose and fell, and somewhere a grandmother wiped away a quiet tear. I spent most of it a few steps back, simply watching for the moments that mattered — the ones no one thinks to pose for.',
+        quote: 'We forgot the camera was even there. And then we saw the photos, and cried all over again.',
+        body2: 'By the time the sadya was served and the last guests lingered over payasam, the light had gone soft and golden. These are the frames we live for — unguarded, warm, and entirely theirs.',
+        cover: 'images/vishnu-shilpa-1.webp', mid: 'images/vishnu-shilpa-7.jpeg', coverRatio: '1080/1350', midRatio: '1080/1440' },
+      bl2: { cat: 'Tips', date: 'November 2025', title: 'What to Wear for Your Pre-Wedding Shoot',
+        lead: 'The question I hear most often is also the simplest to answer: wear what makes you feel like the best version of yourselves. A pre-wedding shoot is not a fashion shoot — it is a portrait of the two of you, together.',
+        body1: 'Lean towards soft, earthy tones — ivories, ochres, deep greens and muted reds photograph beautifully against Kerala\'s landscapes. Avoid loud logos and harsh neons; they pull the eye away from your faces. Flowing fabrics catch the breeze and the light, and movement always makes for the most romantic frames.',
+        quote: 'When you are comfortable, it shows — and comfort is the most photogenic thing in the world.',
+        body2: 'Bring one considered change of outfit, keep accessories gentle, and trust us with the rest. We will find the light, the location and the quiet moments. You just have to be together.',
+        cover: 'images/yadu-aswathy-1.webp', mid: 'images/yadu-aswathy-4.webp', coverRatio: '1080/1350', midRatio: '1080/1350' },
+      bl3: { cat: 'Notes', date: 'October 2025', title: 'Golden Hour in Kerala: Why Timing Is Everything',
+        lead: 'There is an hour, just after sunrise and again before sunset, when the light in Kerala turns to honey. Skin glows, shadows soften, and even the most ordinary backdrop becomes cinematic. We plan entire shoots around it.',
+        body1: 'Harsh midday sun is the enemy of romance — it flattens faces and squints eyes. So we wake early, or we wait for the day to cool. Twenty minutes of the right light will always outshine two hours of the wrong kind.',
+        quote: 'The difference between a lovely photograph and an unforgettable one is often just the time of day.',
+        body2: 'If you are planning your timeline, talk to us before you lock the muhurtham and the portraits. A little foresight gives us that golden window — and gives you photographs that feel lit from within.',
+        cover: 'images/mahesh-athira-1.jpeg', mid: 'images/mahesh-athira-4.jpeg', coverRatio: '1080/1440', midRatio: '1080/1440' },
+      bl4: { cat: 'Real Weddings', date: 'September 2025', title: 'Anakha & Siddharth: A Fort Kochi Love Story in Black',
+        lead: 'Fort Kochi at golden hour is a photographer\'s dream — peeling ochre walls, painted murals, fishing nets against the sky. Anakha and Siddharth moved through the old city in elegant black, and it felt like the streets had been waiting for them.',
+        body1: 'We wandered without a shot list. A quiet doorway here, a burst of colour there, a glance exchanged while a cycle rattled past. The city did half the work; the two of them did the rest.',
+        quote: 'Every street, every wall became part of our story. They saw the city the way we felt it.',
+        body2: 'As the light dropped over the harbour, we found our last frame against a painted wall, the couple framed in shadow and gold. A wedding shoot that felt less like a session and more like an evening walk through a city in love.',
+        cover: 'images/anakha-siddharth-2.webp', mid: 'images/anakha-siddharth-3.webp', coverRatio: '1080/1440', midRatio: '1080/1440' },
+    };
+  }
+
+  statsRef = (el) => {
+    if (!el || el._statsBound) return;
+    el._statsBound = true;
+    const run = () => {
+      if (el._statsRan) return;
+      el._statsRan = true;
+      el.querySelectorAll('[data-target]').forEach((node) => {
+        const target = parseInt(node.getAttribute('data-target'), 10) || 0;
+        const suffix = node.getAttribute('data-suffix') || '';
+        const dur = 1700, start = performance.now();
+        const ease = (t) => 1 - Math.pow(1 - t, 3);
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / dur);
+          const val = Math.round(target * ease(p));
+          node.textContent = val.toLocaleString('en-US') + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else node.textContent = target.toLocaleString('en-US') + suffix;
+        };
+        node.textContent = '0' + suffix;
+        requestAnimationFrame(tick);
+      });
+    };
+    if (typeof IntersectionObserver === 'undefined') { run(); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { run(); io.disconnect(); } });
+    }, { threshold: 0.4 });
+    io.observe(el);
+  };
+
+  componentDidMount() { this.applyImages(); }
+  componentDidUpdate() { this.applyImages(); }
+
+  cfg() {
+    return {
+      vishnu: { couple: 'Vishnu & Shilpa', place: 'Palakkad, Kerala · 2025', kicker: 'a celebration',
+        intro: "Backwaters at first light, jasmine in her hair, and the sea breaking behind them. Vishnu and Shilpa's Palakkad celebration was pure, unhurried joy.",
+        quote: 'We forgot the camera was even there. And then we saw the photos, and cried all over again.',
+        hero: '1080/1350', pair: '1080/1437',
+        photos: ['images/vishnu-shilpa-1.webp', 'images/vishnu-shilpa-4.jpeg', 'images/vishnu-shilpa-3.jpeg', 'images/vishnu-shilpa-2.webp', 'images/vishnu-shilpa-5.jpeg', 'images/vishnu-shilpa-6.jpeg', 'images/vishnu-shilpa-7.jpeg', 'images/vishnu-shilpa-8.jpeg', 'images/vishnu-shilpa-9.jpeg', 'images/vishnu-shilpa-10.jpeg', 'images/vishnu-shilpa-11.jpeg', 'images/vishnu-shilpa-12.webp', 'images/vishnu-shilpa-13.webp'] },
+      mahesh: { couple: 'Mahesh & Athira', place: 'Trivandrum, Kerala · 2025', kicker: 'a love story',
+        intro: 'Golden light spilling through the hills above Trivandrum, and two people who never quite stopped laughing. An afternoon that felt like a held breath.',
+        quote: 'It felt less like a shoot and more like a walk with an old friend. The photos still make us grin.',
+        hero: '1080/1440', pair: '1080/1440',
+        photos: ['images/mahesh-athira-1.jpeg', 'images/mahesh-athira-2.jpeg', 'images/mahesh-athira-3.jpeg', 'images/mahesh-athira-4.jpeg', 'images/mahesh-athira-5.jpeg', 'images/mahesh-athira-6.jpeg'] },
+      rohin: { couple: 'Rohin & Jana', place: 'Bangalore · 2026', kicker: 'a grand affair',
+        intro: 'Palace columns, a sweep of crimson, and a couple made for the frame. Rohin and Jana turned Bangalore into pure cinema.',
+        quote: 'They told us to simply feel grand — and somehow we did. Every photo looks like a film still.',
+        hero: '1080/1440', pair: '1080/1440',
+        photos: ['images/rohin-jana-1.jpeg', 'images/rohin-jana-2.jpeg', 'images/rohin-jana-3.jpeg', 'images/rohin-jana-4.jpeg', 'images/rohin-jana-5.jpeg', 'images/rohin-jana-6.jpeg'] },
+      yadu: { couple: 'Yadu & Aswathy', place: 'Trivandrum, Kerala · 2025', kicker: 'a quiet bloom',
+        intro: 'Ivy-green walls, lotus ponds, and a love that needed no prompting. Yadu and Aswathy moved through Trivandrum like the morning belonged to them.',
+        quote: 'Every frame feels like a moment we actually lived. That is the magic — nothing felt staged.',
+        hero: '1080/1350', pair: '1080/1350',
+        photos: ['images/yadu-aswathy-1.webp', 'images/yadu-aswathy-2.webp', 'images/yadu-aswathy-3.webp', 'images/yadu-aswathy-4.webp', 'images/yadu-aswathy-5.webp', 'images/yadu-aswathy-6.webp'] },
+      arjun: { couple: 'Arjun & Aparnna', place: 'Trivandrum, Kerala · 2023', kicker: 'gold & grace',
+        intro: 'Kanjivaram silk, temple gold, and the warm hush of a traditional Kerala wedding. Arjun and Aparnna wore their heritage like a second skin.',
+        quote: 'They captured the rituals, the laughter with the cooks, every tiny detail of our day. Heirloom photographs, truly.',
+        hero: '1080/1350', pair: '1080/1350',
+        photos: ['images/arjun-aparnna-1.jpeg', 'images/arjun-aparnna-2.jpeg', 'images/arjun-aparnna-3.jpeg', 'images/arjun-aparnna-4.jpeg', 'images/arjun-aparnna-5.jpeg', 'images/arjun-aparnna-6.jpeg'] },
+      anakha: { couple: 'Anakha & Siddharth', place: 'Ernakulam, Kerala · 2025', kicker: 'a city in black',
+        intro: 'Fort Kochi at golden hour — peeling ochre walls, painted birds in flight, and a couple in elegant black moving through the old city like it was built for them.',
+        quote: 'Every street, every wall became part of our story. They saw the city the way we felt it.',
+        hero: '1080/1440', pair: '1080/1440',
+        photos: ['images/anakha-siddharth-1.webp', 'images/anakha-siddharth-2.webp', 'images/anakha-siddharth-3.webp', 'images/anakha-siddharth-4.webp', 'images/anakha-siddharth-5.webp'] },
+      soorya: { couple: 'Soorya & Nithun', place: 'Trivandrum, Kerala · 2025', kicker: 'sacred vows',
+        intro: 'Lotus garlands, temple gold, and a forehead kiss before the deities. Soorya and Nithun’s muhurtham was tender, sacred, and overflowing with tradition.',
+        quote: 'They held the holiest moments of our wedding so gently. We will treasure these forever.',
+        hero: '1080/1344', pair: '1080/1344',
+        photos: ['images/soorya-nithun-1.jpeg', 'images/soorya-nithun-2.jpeg'] },
+      dhanesh: { couple: 'Dhanesh & Steffy', place: 'Kottayam, Kerala · 2022', kicker: 'in white',
+        intro: 'Soft window light, a lace veil, and a bouquet held close. Dhanesh and Steffy’s Kottayam wedding was timeless monochrome — quiet, classic, and full of grace.',
+        quote: 'The black-and-white frames feel like they belong in a film. Pure elegance, exactly as we hoped.',
+        hero: '1080/1344', pair: '1080/1344',
+        photos: ['images/dhanesh-steffy-1.jpeg', 'images/dhanesh-steffy-2.jpeg', 'images/dhanesh-steffy-3.jpeg'] },
+    };
+  }
+
+  applyImages() {
+    const s = this.cfg()[this.state.session] || this.cfg().vishnu;
+    const bd = this.blogCfg()[this.state.blogId] || this.blogCfg().bl1;
+    const map = { pf1: 'images/vishnu-shilpa-4.jpeg', pf2: 'images/mahesh-athira-1.jpeg', pf3: 'images/rohin-jana-1.jpeg', pf4: 'images/yadu-aswathy-1.webp', pf5: 'images/arjun-aparnna-4.jpeg', pf6: 'images/anakha-siddharth-1.webp', pf7: 'images/soorya-nithun-2.jpeg', pf8: 'images/dhanesh-steffy-2.jpeg', aboutPortrait: 'images/photographer.jpeg',
+      bl1: 'images/vishnu-shilpa-4.jpeg', bl2: 'images/yadu-aswathy-2.webp', bl3: 'images/mahesh-athira-2.jpeg', bl4: 'images/anakha-siddharth-1.webp',
+      off1: 'images/dhanesh-steffy-2.jpeg', off2: 'images/mahesh-athira-2.jpeg', off3: 'images/anakha-siddharth-4.webp',
+      homeHero: 'images/rohin-jana-1.jpeg',
+      aboutFact1: 'images/fact-film-digital.png', aboutFact2: 'images/mahesh-athira-3.jpeg', aboutFact3: 'images/anakha-siddharth-2.webp',
+      bd1: bd.cover, bd2: bd.mid };
+    (s.photos || []).forEach((src, i) => { map['pd' + (i + 1)] = src; });
+    requestAnimationFrame(() => {
+      Object.keys(map).forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && el.getAttribute('src') !== map[id]) el.setAttribute('src', map[id]);
+      });
+    });
+  }
+
+  renderVals() {
+    const v = this.state.view;
+    const dS = this.cfg()[this.state.session] || this.cfg().vishnu;
+    const pfStyle = ['height:440px;', 'height:320px;', 'height:380px;', 'height:340px;', 'height:460px;', 'height:300px;', 'height:400px;', 'height:360px;', 'height:420px;'];
+    const pfSrc = ['images/vishnu-shilpa-4.jpeg', '', '', '', '', '', '', '', ''];
+    const portfolioItems = [
+      { id: 'pf1', couple: 'Vishnu & Shilpa', place: 'Palakkad, Kerala' },
+      { id: 'pf2', couple: 'Aanya & Rohan', place: 'Udaipur, India' },
+      { id: 'pf3', couple: 'Sofia & Liam', place: 'Provence, France' },
+      { id: 'pf4', couple: 'Mei & Daniel', place: 'Kyoto, Japan' },
+      { id: 'pf5', couple: 'Isabel & Theo', place: 'Santorini, Greece' },
+      { id: 'pf6', couple: 'Noor & Idris', place: 'Marrakech, Morocco' },
+      { id: 'pf7', couple: 'Clara & Finn', place: 'Lake Como, Italy' },
+      { id: 'pf8', couple: 'Priya & Arjun', place: 'Jaipur, India' },
+      { id: 'pf9', couple: 'Elena & Marco', place: 'Amalfi, Italy' },
+    ].map((p, i) => ({ ...p, style: 'width:100%;' + pfStyle[i], src: pfSrc[i] }));
+
+    return {
+      isHome: v === 'home', isServices: v === 'services', isAbout: v === 'about',
+      isPortfolio: v === 'portfolio', isPortfolioDetail: v === 'portfolioDetail',
+      isBlog: v === 'blog', isBlogDetail: v === 'blogDetail', isContact: v === 'contact', is404: v === 'notfound',
+      portfolioItems,
+      showStats: this.props.showStats !== false,
+      statsRef: this.statsRef,
+      showTestimonial: this.props.showTestimonial !== false,
+      goHome: this.go('home'), goServices: this.go('services'), goAbout: this.go('about'),
+      goPortfolio: this.go('portfolio'), goPortfolioDetail: this.go('portfolioDetail'),
+      goBlog: this.go('blog'), goBlogDetail: this.go('blogDetail'), goContact: this.go('contact'), go404: this.go('notfound'),
+      openBlog: this.openBlog.bind(this),
+      bData: this.blogCfg()[this.state.blogId] || this.blogCfg().bl1,
+      openVishnu: this.openSession('vishnu'), openMahesh: this.openSession('mahesh'), openRohin: this.openSession('rohin'), openYadu: this.openSession('yadu'), openArjun: this.openSession('arjun'), openAnakha: this.openSession('anakha'), openSoorya: this.openSession('soorya'), openDhanesh: this.openSession('dhanesh'),
+      dCouple: dS.couple, dPlace: dS.place, dKicker: dS.kicker, dIntro: dS.intro, dQuote: dS.quote,
+      dHero: dS.hero, dPair: dS.pair,
+      detailRest: (dS.photos || []).slice(1).map((src, i) => ({ id: 'pd' + (i + 2), ratio: dS.pair })),
+
+      offerings: [
+        { id: 'off1', title: 'Weddings', text: 'Full-day storytelling, from the first look to the last dance, captured with a gentle, unobtrusive eye.' },
+        { id: 'off2', title: 'Engagements', text: 'A relaxed session to celebrate the in-between chapter — and to feel at ease before the big day.' },
+        { id: 'off3', title: 'Portraits', text: 'Intimate, light-filled portraits for couples and families who want something timeless to keep.' },
+      ],
+      stats: [
+        { num: '11+', target: 11, suffix: '+', label: 'Years' },
+        { num: '10,000+', target: 10000, suffix: '+', label: 'Photographs' },
+        { num: '250+', target: 250, suffix: '+', label: 'Weddings' },
+        { num: '6', target: 6, suffix: '', label: 'Awards' },
+      ],
+      packages: [
+        { kicker: 'Package 01', name: 'Both-Side Essential', events: 'Wedding Eve & Wedding Day', price: '₹1,55,000',
+          bg: '#FBF8F3', border: '#E2D7C6', rule: '#DED4C5', titleColor: '#3B342C', featColor: '#6F6557', kickerColor: '#A89A85', labelColor: '#A89A85', priceColor: '#3B342C', btnColor: '#3B342C', btnBorder: '#C9B79C', btnBg: 'transparent', featured: false,
+          sections: [
+            { label: 'Crew', items: ['1 Photographer + 1 Videographer (Bride Side)', '1 Photographer + 1 Videographer (Groom Side)', 'Traditional & Candid Photography', 'Traditional & Candid Videography'] },
+            { label: 'Output', items: ['Highlight (1080P Full HDQ)', 'Wedding Reel (1080P Full HDQ)', 'Full Function Videos (1080P Full HDQ)', '2 Set 100-Page Album', 'Soft Copies'] },
+            { label: 'Complimentary', items: ['4 Set Photo Frame', 'Calendar', 'Mini Book'] },
+          ] },
+        { kicker: 'Package 02', name: 'Both-Side Signature', events: 'Wedding Eve / Engagement Eve, Engagement Day & Wedding Day', price: '₹1,95,000',
+          bg: '#3B342C', border: '#3B342C', rule: 'rgba(240,232,220,0.18)', titleColor: '#F0E8DC', featColor: '#CDBFAC', kickerColor: '#A8C23F', labelColor: '#B7A98F', priceColor: '#F0E8DC', btnColor: '#3B342C', btnBorder: '#A8C23F', btnBg: '#A8C23F', featured: true,
+          sections: [
+            { label: 'Crew', items: ['1 Photographer + 1 Videographer (Bride Side)', '1 Photographer + 1 Videographer (Groom Side)', 'Traditional & Candid Photography', 'Traditional & Candid Videography'] },
+            { label: 'Output', items: ['Engagement + Wedding Combined Highlight (1080P)', 'Engagement Reel (1080P Full HDQ)', 'Wedding Reel (1080P Full HDQ)', 'Full Function Videos (1080P Full HDQ)', '2 Set 100-Page Album', 'Soft Copies'] },
+            { label: 'Complimentary', items: ['4 Set Photo Frame', 'Calendar', 'Mini Book'] },
+          ] },
+        { kicker: 'Package 03 · Premium', name: 'Both-Side Premium', events: 'Pre-Wedding · Engagement & Wedding — Photography & Cinematography', price: '₹2,75,000',
+          bg: '#FBF8F3', border: '#E2D7C6', rule: '#DED4C5', titleColor: '#3B342C', featColor: '#6F6557', kickerColor: '#A89A85', labelColor: '#A89A85', priceColor: '#3B342C', btnColor: '#3B342C', btnBorder: '#C9B79C', btnBg: 'transparent', featured: false,
+          sections: [
+            { label: 'Crew', items: ['1 Photographer + 1 Cinematography (Bride Side)', '1 Photographer + 1 Cinematography (Groom Side)', '1 Drone', 'Traditional & Candid Photography', 'Traditional & Candid Cinematography'] },
+            { label: 'Output', items: ['Engagement + Wedding Combined Highlight (1080P)', 'Engagement Reel (1080P Full HDQ)', 'Wedding Reel (1080P Full HDQ)', 'Full Function Videos (1080P Full HDQ)', '2 Set 120-Page Premium Album', 'Soft Copies'] },
+            { label: 'Complimentary', items: ['4 Set Photo Frame', 'Calendar', '2 Mini Book'] },
+          ] },
+      ],
+      steps: [
+        { n: '01', title: 'Say Hello', text: 'Reach out and tell me about your day. We chat over coffee — in person or on a call.' },
+        { n: '02', title: 'Plan Together', text: 'I help shape a timeline that lets the day breathe, with light and ease in mind.' },
+        { n: '03', title: 'The Day', text: 'I arrive early and stay close, quietly catching the moments as they happen.' },
+        { n: '04', title: 'Heirlooms', text: 'Your gallery arrives within weeks, followed by a hand-bound album to treasure.' },
+      ],
+      faqs: [
+        { q: 'How far in advance should we book?', a: 'Most couples reach out 9 to 14 months ahead. I take a limited number of weddings each year to give every one my full attention.' },
+        { q: 'Do you travel?', a: 'Always. I am based in Bengaluru but photograph weddings across India and around the world — travel is quoted simply and transparently.' },
+        { q: 'When will we see our photos?', a: 'A sneak peek lands within a week of the wedding, and your full gallery follows within four to six weeks.' },
+        { q: 'What is your shooting style?', a: 'Documentary at heart, with soft, true-to-life colour. I direct gently when it helps, but mostly I let the day lead.' },
+      ],
+      facts: [
+        { id: 'aboutFact1', n: '01', title: 'Film & Digital', text: 'I shoot both — film for its soul, digital for its certainty. The two together feel just right.' },
+        { id: 'aboutFact2', n: '02', title: 'Golden Hour', text: 'My favourite light is the last hour before sunset. We will plan a few minutes just for the two of you.' },
+        { id: 'aboutFact3', n: '03', title: 'Forever Curious', text: 'Between weddings you will find me wandering markets, chasing light and collecting old cameras.' },
+      ],
+      blogPosts: [
+        { id: 'bl1', cat: 'Real Weddings', date: 'December 2025', title: 'Vishnu & Shilpa: A Palakkad Celebration in Full Bloom', excerpt: 'Temple bells, jasmine garlands and a courtyard full of family. A traditional Kerala wedding photographed exactly as it unfolded.', ratio: '1080/1437', open: this.openBlog('bl1') },
+        { id: 'bl2', cat: 'Tips', date: 'November 2025', title: 'What to Wear for Your Pre-Wedding Shoot', excerpt: 'A few gentle thoughts on colour, fabric and comfort — so you look like yourselves, only a little more cinematic.', ratio: '1080/1350', open: this.openBlog('bl2') },
+        { id: 'bl3', cat: 'Notes', date: 'October 2025', title: 'Golden Hour in Kerala: Why Timing Is Everything', excerpt: 'The difference between a lovely photograph and an unforgettable one is often just twenty minutes of light. Here is how we plan for it.', ratio: '1080/1441', open: this.openBlog('bl3') },
+        { id: 'bl4', cat: 'Real Weddings', date: 'September 2025', title: 'Anakha & Siddharth: A Fort Kochi Love Story in Black', excerpt: 'Ochre walls, painted murals and two people in elegant black. A city wedding shoot through the old streets of Kochi.', ratio: '1080/1440', open: this.openBlog('bl4') },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
